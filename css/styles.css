@@ -56,6 +56,13 @@ body {
   content: ", ";
   font-style: normal;
 }
+.genre {
+  font-style: italic;
+}
+.genre:before {
+  content: ", ";
+  font-style: normal;
+}
 
 #loadQuote {
   position: fixed;
