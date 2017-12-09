@@ -1,6 +1,3 @@
-// event listener to respond to "Show another quote" button clicks
-// when user clicks anywhere on the button, the "printQuote" function is called
-document.getElementById('loadQuote').addEventListener("click", printQuote, false);
 
 /*
 This is the array that comtains the quote objects.
@@ -67,13 +64,18 @@ var quotes = [
 	}
 
 ];
+
+// variable to store randomly generated quote selected from array
 var quoteObject;
+
+// function to select random quote from the array
 function getRandomQuote( list ) {
 	var upper = list.length;
 	quoteObject = list[ Math.floor( Math.random() * upper) ];
 	return quoteObject;
 }
 
+// function to check for conditions of the quote and then display to the browser
 function printQuote() {
 	var quote = getRandomQuote(quotes);
 	var message = '<p class="quote">' + quote.quote + '</p>';
@@ -89,7 +91,24 @@ function printQuote() {
   	}
   	message += '</p>';
 	document.getElementById('quote-box').innerHTML = message;
+
+// nested function to change the background and button color to a random hex color value
+	function randomBackgroundColorPicker() {
+    var randomColor = "#000000".replace(/0/g,function(){return (~~(Math.random()*16)).toString(16);});
+    document.body.style.backgroundColor = randomColor;
+    document.getElementById("loadQuote").style.backgroundColor = randomColor;
+	}
+
+	randomBackgroundColorPicker();
 }
 
+// running the function
 printQuote();
+
+// sets the interval to 10 seconds before the quote will refresh
+setInterval(function() {printQuote() }, 10000);
+ 
+// event listener to respond to "Show another quote" button clicks
+// when user clicks anywhere on the button, the "printQuote" function is called
+document.getElementById('loadQuote').addEventListener("click", printQuote, false);
 
